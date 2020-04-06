@@ -30,27 +30,46 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final _loadedProducts =
         Provider.of<Products>(context, listen: false).findById(_productId);
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_loadedProducts.title),
+      ),
       drawer: MyDrawer(),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: 160,
-              floating: true,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  _loadedProducts.imageUrl,
-                  fit: BoxFit.cover,
-                  color: Colors.black38,
-                  colorBlendMode: BlendMode.darken,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.network(
+                _loadedProducts.imageUrl,
+                fit: BoxFit.cover,
+                color: Colors.black12,
+                colorBlendMode: BlendMode.darken,
               ),
-            )
-          ];
-        },
-        body: Center(
-          child: Text('some texts'),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              height: 100,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      _loadedProducts.title,
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      '\$' + _loadedProducts.price.toString(),
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
