@@ -59,12 +59,11 @@ class CartProvider with ChangeNotifier {
     if (_items.containsKey(productId)) {
       _items.update(
           productId,
-              (value) =>
-              CartItems(
-                  title: value.title,
-                  id: value.id,
-                  price: value.price,
-                  qnty: value.qnty + 1));
+          (value) => CartItems(
+              title: value.title,
+              id: value.id,
+              price: value.price,
+              qnty: value.qnty + 1));
     } else {
       _items.putIfAbsent(
           productId,
