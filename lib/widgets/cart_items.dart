@@ -41,7 +41,7 @@ class CartItem extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 85,
-                width: 70,
+                width: 85,
                 child: ClipRRect(
                   child: Image.network(
                     getProductInfo.imageUrl,

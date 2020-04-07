@@ -45,7 +45,7 @@ class RecentScreen extends StatelessWidget {
                               children: <Widget>[
                                 Container(
                                   height: 85,
-                                  width: 70,
+                                  width: 85,
                                   child: ClipRRect(
                                     child: Image.network(
                                       recentItemProvider[index].imageUrl,
@@ -63,7 +63,7 @@ class RecentScreen extends StatelessWidget {
                                   child: ListTile(
                                     leading: SizedBox(
                                       height: 50,
-                                      width: 30,
+                                      width: 60,
                                     ),
                                     title:
                                         Text(recentItemProvider[index].title),
