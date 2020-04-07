@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/cart_screen.dart';
 import '../screens/recentScreen.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -36,7 +37,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text('Your Order'),
               subtitle: Text('Take a look'),
-              onTap: () => Navigator.of(context).pushNamed('/'),
+              onTap: () => Navigator.of(context).pushNamed(CartScreen.route),
               contentPadding: EdgeInsets.all(2),
             ),
             ListTile(

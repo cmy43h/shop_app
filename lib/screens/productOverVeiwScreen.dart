@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import './cart_screen.dart';
+import '../providers/cart_provider.dart';
 import '../providers/products_provider.dart';
+import '../widgets/badge.dart';
 import '../widgets/drawer.dart';
 import '../widgets/product_item.dart';
 
@@ -19,6 +22,8 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
     return Scaffold(
         appBar: AppBar(
           title: Text('My Shop'),
@@ -44,6 +49,18 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 });
               },
               icon: Icon(Icons.more_vert),
+            ),
+            Consumer<CartProvider>(
+              builder: (_, cp, ch) =>
+                  Badge(
+                    child: ch,
+                    value: cartProvider.itemCount.toString(),
+                    color: Colors.pink,
+                  ),
+              child: IconButton(
+                  icon: Icon(Icons.shopping_cart),
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed(CartScreen.route)),
             )
           ],
         ),
