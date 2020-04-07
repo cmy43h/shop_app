@@ -10,47 +10,86 @@ class RecentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final recentProvider = Provider.of<Products>(context, listen: false).recent;
-
+    final recentItemProvider =
+        Provider.of<Products>(context, listen: false).recent;
+    final recentProvider = Provider.of<Products>(context, listen: false);
     return Scaffold(
       appBar: AppBar(title: Text('Recents')),
       drawer: MyDrawer(),
-      body: recentProvider.length > 0
+      body: recentItemProvider.length > 0
           ? ListView.builder(
               padding: EdgeInsets.all(15),
               itemBuilder: (BuildContext context, int index) {
                 return ChangeNotifierProvider.value(
-                  value: recentProvider[index],
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 2.0, color: const Color(0xFF7842E5)),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Color(0xffF2EFF8),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(8),
-                    child: ListTile(
-                      onTap: () => Navigator.of(context).pushNamed(
-                          ProductDetailScreen.route,
-                          arguments: recentProvider[index].id),
-                      leading: Image.network(
-                        recentProvider[index].imageUrl,
-                        fit: BoxFit.cover,
+                  value: recentItemProvider[index],
+                  child: Dismissible(
+                      onDismissed: (direction) => recentProvider
+                          .removeRecent(recentItemProvider[index].id),
+                      background: Container(
+                        color: Theme.of(context).errorColor,
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                        alignment: Alignment.centerRight,
+                        padding: EdgeInsets.only(right: 20),
                       ),
-                      title: Text(
-                        recentProvider[index].title,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      trailing: Text(
-                        recentProvider[index].price.toString(),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
+                      direction: DismissDirection.endToStart,
+                      key: ValueKey(recentItemProvider[index].id),
+                      child: GestureDetector(
+                        child: Container(
+                          child: Card(
+                            elevation: 8,
+                            shadowColor: Colors.black45,
+                            child: Stack(
+                              children: <Widget>[
+                                Container(
+                                  height: 85,
+                                  width: 70,
+                                  child: ClipRRect(
+                                    child: Image.network(
+                                      recentItemProvider[index].imageUrl,
+                                      fit: BoxFit.cover,
+                                      color: Colors.black12,
+                                      colorBlendMode: BlendMode.darken,
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(3),
+                                        bottomLeft: Radius.circular(3)),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: ListTile(
+                                    leading: SizedBox(
+                                      height: 50,
+                                      width: 30,
+                                    ),
+                                    title:
+                                        Text(recentItemProvider[index].title),
+                                    trailing: Chip(
+                                      label: Text(
+                                        '\$' +
+                                            recentItemProvider[index]
+                                                .price
+                                                .toString(),
+                                      ),
+                                      backgroundColor: const Color(0xFF7842E5)
+                                          .withOpacity(0.3),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        onTap: () => Navigator.of(context).pushNamed(
+                            ProductDetailScreen.route,
+                            arguments: recentItemProvider[index].id),
+                      )),
                 );
               },
-              itemCount: recentProvider.length,
+              itemCount: recentItemProvider.length,
             )
           : Center(
               child: Text(

@@ -119,6 +119,11 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeRecent(String id) {
+    _recent.removeWhere((element) => element.id == id);
+    notifyListeners();
+  }
+
   List<Product> get showFavoriteItems {
     return items.where((element) => element.isFavorite).toList();
   }
