@@ -67,12 +67,11 @@ class CartProvider with ChangeNotifier {
     } else {
       _items.putIfAbsent(
           productId,
-              () =>
-              CartItems(
-                  title: title,
-                  id: DateTime.now().toString(),
-                  price: price,
-                  qnty: 1));
+          () => CartItems(
+              title: title,
+              id: DateTime.now().toString(),
+              price: price,
+              qnty: 1));
     }
     _items.forEach((key, value) {
       print(value);
