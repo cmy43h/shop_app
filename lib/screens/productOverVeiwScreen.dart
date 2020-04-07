@@ -51,12 +51,11 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               icon: Icon(Icons.more_vert),
             ),
             Consumer<CartProvider>(
-              builder: (_, cp, ch) =>
-                  Badge(
-                    child: ch,
-                    value: cartProvider.itemCount.toString(),
-                    color: Colors.pink,
-                  ),
+              builder: (_, cp, ch) => Badge(
+                child: ch,
+                value: cartProvider.itemCount.toString(),
+                color: Colors.pink,
+              ),
               child: IconButton(
                   icon: Icon(Icons.shopping_cart),
                   onPressed: () =>

@@ -38,7 +38,7 @@ class CartProvider with ChangeNotifier {
 
   double totalAmountPerItem(double price, String title) {
     var valueInfo =
-    _items.values.toList().firstWhere((element) => element.title == title);
+        _items.values.toList().firstWhere((element) => element.title == title);
     return valueInfo.qnty * valueInfo.price;
   }
 
