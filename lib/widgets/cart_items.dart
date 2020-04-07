@@ -40,7 +40,7 @@ class CartItem extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Container(
-                height: 85,
+                height: 116,
                 width: 85,
                 child: ClipRRect(
                   child: Image.network(
@@ -54,75 +54,103 @@ class CartItem extends StatelessWidget {
                       bottomLeft: Radius.circular(3)),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: ListTile(
-                  leading: SizedBox(
-                    height: 50,
-                    width: 30,
-                  ),
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(title),
-                      Container(
-                        height: 30,
-                        width: 80,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                                width: 2,
-                                color:
-                                    const Color(0xFF7842E5).withOpacity(0.3))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            InkWell(
-                              child: Icon(
-                                Icons.add,
-                                size: 15,
-                              ),
-                              onTap: () =>
-                                  cartProvider.getQuantity(title, true),
-                            ),
-                            Container(
-                              child: Consumer<CartProvider>(
-                                builder: (_, cp, ch) => Container(
-                                  width: 20,
-                                  child: Text(
-                                    qnty.toString(),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 15),
+              Column(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: ListTile(
+                      leading: SizedBox(
+                        height: 50,
+                        width: 55,
+                      ),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            title,
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Spacer(),
+                          Container(
+                            height: 30,
+                            width: 80,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(
+                                    width: 2,
+                                    color: const Color(0xFF7842E5)
+                                        .withOpacity(0.3))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                InkWell(
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 15,
+                                  ),
+                                  onTap: () =>
+                                      cartProvider.getQuantity(title, true),
+                                ),
+                                Container(
+                                  child: Consumer<CartProvider>(
+                                    builder: (_, cp, ch) => Container(
+                                      width: 20,
+                                      child: Text(
+                                        qnty.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                                InkWell(
+                                  child: Icon(
+                                    Icons.remove,
+                                    size: 15,
+                                  ),
+                                  onTap: () =>
+                                      cartProvider.getQuantity(title, false),
+                                )
+                              ],
                             ),
-                            InkWell(
-                              child: Icon(
-                                Icons.remove,
-                                size: 15,
-                              ),
-                              onTap: () =>
-                                  cartProvider.getQuantity(title, false),
-                            )
-                          ],
+                          )
+                        ],
+                      ),
+                      trailing: Chip(
+                        label: Text(
+                          '\$' +
+                              cartProvider
+                                  .totalAmountPerItem(getProductInfo.price,
+                                      getProductInfo.title)
+                                  .toString(),
                         ),
-                      )
-                    ],
-                  ),
-                  trailing: Chip(
-                    label: Text(
-                      '\$' +
-                          cartProvider
-                              .totalAmountPerItem(
-                                  getProductInfo.price, getProductInfo.title)
-                              .toString(),
+                        backgroundColor:
+                            const Color(0xFF7842E5).withOpacity(0.3),
+                      ),
                     ),
-                    backgroundColor: const Color(0xFF7842E5).withOpacity(0.3),
                   ),
-                ),
+                  Container(
+                    height: 40,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FlatButton.icon(
+                          icon: Icon(Icons.save_alt),
+                          onPressed: null,
+                          label: Text('To Wishlists'),
+                        ),
+                        FlatButton.icon(
+                          onPressed: null,
+                          icon: Icon(Icons.attach_money),
+                          label: Text('Check Out'),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               )
             ],
           ),
