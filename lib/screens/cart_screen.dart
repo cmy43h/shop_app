@@ -77,7 +77,7 @@ class CartScreen extends StatelessWidget {
                       onPressed: () => showDialog(
                           context: context, builder: (context) => MyDialogue()),
                       child: Text(
-                        'Check Out',
+                        'Check Out All',
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),

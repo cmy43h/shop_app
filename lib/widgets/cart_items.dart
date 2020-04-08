@@ -35,13 +35,13 @@ class CartItem extends StatelessWidget {
       key: ValueKey(id),
       child: Container(
         child: Card(
-          elevation: 8,
-          shadowColor: Colors.black45,
+          elevation: 5,
+          shadowColor: Colors.black54,
           child: Stack(
             children: <Widget>[
               Container(
-                height: 116,
-                width: 85,
+                height: 115,
+                width: 90,
                 child: ClipRRect(
                   child: Image.network(
                     getProductInfo.imageUrl,
@@ -55,90 +55,142 @@ class CartItem extends StatelessWidget {
                 ),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.all(10),
-                    child: ListTile(
-                      leading: SizedBox(
-                        height: 50,
-                        width: 55,
-                      ),
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 27,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(
+                              top: 10, right: 15, bottom: 5, left: 105),
+                          child: Text(
                             title,
-                            style: TextStyle(fontSize: 20),
+                            overflow: TextOverflow.fade,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(fontSize: 18),
                           ),
-                          Spacer(),
-                          Container(
-                            height: 30,
-                            width: 80,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    width: 2,
-                                    color: const Color(0xFF7842E5)
-                                        .withOpacity(0.3))),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                InkWell(
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 15,
-                                  ),
-                                  onTap: () =>
-                                      cartProvider.getQuantity(title, true),
-                                ),
-                                Container(
-                                  child: Consumer<CartProvider>(
-                                    builder: (_, cp, ch) => Container(
-                                      width: 20,
-                                      child: Text(
-                                        qnty.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 15),
+                        ),
+                        Container(
+                          height: 30,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(right: 15, left: 105),
+                          child: Row(
+                            children: <Widget>[
+                              Text('Qnty :'),
+                              Spacer(),
+                              Container(
+                                height: 20,
+                                width: 90,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 16,
+                                      width: 28,
+                                      child: RaisedButton(
+                                        color: Colors
+                                            .white /*const Color(0xFFE0D5F6)*/,
+                                        padding: EdgeInsets.all(0),
+                                        onPressed: () => cartProvider
+                                            .getQuantity(title, true),
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 15,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(60),
+                                            bottomLeft: Radius.circular(60),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.only(left: 2, right: 2),
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 1,
+                                              offset: Offset(1, 1))
+                                        ],
+                                        /*border: Border.all(
+                                        width: 1, color: Colors.black12)*/
+                                      ),
+                                      child: Consumer<CartProvider>(
+                                        builder: (_, cp, ch) => Container(
+                                          width: 26,
+                                          height: 16,
+                                          color: Colors.white,
+                                          child: Text(
+                                            qnty.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 16,
+                                      width: 28,
+                                      child: RaisedButton(
+                                        color:
+                                            Colors.white /*Color(0xFFFFC3C8)*/,
+                                        padding: EdgeInsets.all(0),
+                                        onLongPress: () => cartProvider
+                                            .getQuantity(title, false, true),
+                                        onPressed: () => cartProvider
+                                            .getQuantity(title, false),
+                                        child: Icon(
+                                          Icons.remove,
+                                          size: 15,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(60),
+                                            bottomRight: Radius.circular(60),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                InkWell(
-                                  child: Icon(
-                                    Icons.remove,
-                                    size: 15,
+                              ),
+                              Spacer(),
+                              Text('Price :'),
+                              Spacer(),
+                              Container(
+                                margin: EdgeInsets.all(0),
+                                height: 33,
+                                child: Chip(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 3, horizontal: 5),
+                                  label: Text(
+                                    cartProvider.totalAmountPerItem(
+                                        getProductInfo.price,
+                                        getProductInfo.title)['mfp'],
                                   ),
-                                  onTap: () =>
-                                      cartProvider.getQuantity(title, false),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      trailing: Chip(
-                        label: Text(
-                          '\$' +
-                              cartProvider
-                                  .totalAmountPerItem(getProductInfo.price,
-                                      getProductInfo.title)
-                                  .toString(),
-                        ),
-                        backgroundColor:
-                            const Color(0xFF7842E5).withOpacity(0.3),
-                      ),
+                                  backgroundColor:
+                                      const Color(0xFF7842E5).withOpacity(0.3),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
+                    height: 80,
                   ),
                   Container(
-                    height: 40,
+                    height: 30,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         FlatButton.icon(
-                          icon: Icon(Icons.save_alt),
+                          icon: Icon(Icons.stars),
                           onPressed: null,
                           label: Text('To Wishlists'),
                         ),
