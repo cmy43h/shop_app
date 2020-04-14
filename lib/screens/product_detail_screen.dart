@@ -29,7 +29,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final _loadedProducts =
-    Provider.of<Products>(context, listen: false).findById(_productId);
+        Provider.of<Products>(context, listen: false).findById(_productId);
     final _cartProvider = Provider.of<CartProvider>(context);
     return SafeArea(
       child: Scaffold(
