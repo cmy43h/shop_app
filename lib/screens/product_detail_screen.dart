@@ -50,24 +50,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     } else
                       showDialog(
                         context: context,
-                        builder: (BuildContext context) =>
-                            AlertDialog(
-                              actions: <Widget>[
-                                FlatButton(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  child: Center(
-                                    child: Text('OK'),
-                                  ),
-                                )
-                              ],
-                              elevation: 5,
-                              content: Container(
-                                height: 30,
-                                child: Center(
-                                  child: Text('Product is added ot your cart'),
-                                ),
+                        builder: (BuildContext context) => AlertDialog(
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Center(
+                                child: Text('OK'),
                               ),
+                            )
+                          ],
+                          elevation: 5,
+                          content: Container(
+                            height: 30,
+                            child: Center(
+                              child: Text('Product is added ot your cart'),
                             ),
+                          ),
+                        ),
                       );
                   },
                   label: Text('Add to Cart'),
