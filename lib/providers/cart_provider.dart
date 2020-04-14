@@ -21,11 +21,11 @@ class CartProvider with ChangeNotifier {
   }
 
   int get itemCount {
-    var totalCount = 0;
+    /*var totalCount = 0;
     _items.forEach((key, value) {
       totalCount += value.qnty;
-    });
-    return totalCount;
+    });*/
+    return _items.length;
   }
 
   double get totalAmount {
