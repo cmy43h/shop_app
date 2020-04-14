@@ -28,7 +28,7 @@ class Products with ChangeNotifier {
         price: 19.99,
         imageUrl:
             'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
-        size: [null]),
+        size: []),
     Product(
         id: 'p4',
         title: 'A Pan',
@@ -36,7 +36,7 @@ class Products with ChangeNotifier {
         price: 49.99,
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
-        size: [null]),
+        size: []),
     Product(
         id: 'p5',
         title: 'Wooden Shoe',
@@ -53,7 +53,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Longines_4_Grand_Prix_pocket_watch_-_clockwork_visible_-_enhanced_resolution_DSF3402-PSMS.jpg/600px-Longines_4_Grand_Prix_pocket_watch_-_clockwork_visible_-_enhanced_resolution_DSF3402-PSMS.jpg',
         price: 200,
-        size: null),
+        size: []),
     Product(
         id: 'p7',
         title: 'Cantilever chair',
@@ -61,7 +61,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/0/07/Breuer_chair_2008_2.jpg',
         price: 50,
-        size: null),
+        size: []),
     Product(
         id: 'p8',
         title: 'Stool Thebes',
@@ -70,7 +70,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Liberty_-_Stool_Thebes_-_1884.jpg/631px-Liberty_-_Stool_Thebes_-_1884.jpg',
         price: 250,
-        size: null),
+        size: []),
     Product(
         id: 'p9',
         title: 'Hat',
@@ -78,7 +78,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Australian_Swagman.jpg/800px-Australian_Swagman.jpg',
         price: 40,
-        size: null),
+        size: []),
     Product(
         id: 'p10',
         title: 'Gloves',
@@ -86,7 +86,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Cryo_protecting_gloves.jpg/800px-Cryo_protecting_gloves.jpg',
         price: 20,
-        size: null),
+        size: []),
     Product(
         id: 'p11',
         title: 'Monitor',
@@ -94,7 +94,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/EIZO_Foris_FG2421_VGA_computer_monitor_displaying_test_pattern.png/800px-EIZO_Foris_FG2421_VGA_computer_monitor_displaying_test_pattern.png',
         price: 100,
-        size: null),
+        size: []),
     Product(
         id: 'p12',
         title: 'Keyboard',
@@ -102,7 +102,7 @@ class Products with ChangeNotifier {
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Apple_Keyboard_II.jpg/750px-Apple_Keyboard_II.jpg',
         price: 50,
-        size: null)
+        size: [])
   ];
 
   List<Product> get items {

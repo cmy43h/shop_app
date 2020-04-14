@@ -12,6 +12,7 @@ class ProductItem extends StatelessWidget {
     final individualProduct = Provider.of<Product>(context, listen: false);
     final provider = Provider.of<Products>(context, listen: false);
     final cart = Provider.of<CartProvider>(context, listen: false);
+    bool _isAdded = false;
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
@@ -44,8 +45,31 @@ class ProductItem extends StatelessWidget {
                   Icons.add_shopping_cart,
                   color: Colors.white,
                 ),
-                onPressed: () => cart.addItemInCart(individualProduct.id,
-                    individualProduct.price, individualProduct.title)),
+                onPressed: () {
+                  if (!_isAdded) {
+                    cart.addItemInCart(individualProduct.id,
+                        individualProduct.price, individualProduct.title);
+                    _isAdded = true;
+                  } else
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Container(
+                        child: Center(
+                          child: Text(
+                            'Product is Added in the Cart',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        height: 60,
+                        width: double.infinity,
+                      ),
+                      elevation: 2,
+                      backgroundColor: Color(0xFFF2EFF8),
+                      duration: Duration(seconds: 3),
+                    ));
+                }),
             title: Text(
               individualProduct.title,
               textAlign: TextAlign.center,
