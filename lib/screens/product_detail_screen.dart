@@ -120,8 +120,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     padding: EdgeInsets.all(5),
                     child: Text(
                       _loadedProducts.title,
-                      style: Theme
-                          .of(context)
+                      style: Theme.of(context)
                           .textTheme
                           .headline6
                           .copyWith(color: Colors.black87, fontSize: 25),
