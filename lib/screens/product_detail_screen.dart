@@ -181,24 +181,23 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               margin: EdgeInsets.all(5),
                               child: Row(
                                 children: _loadedProducts.size
-                                    .map((e) =>
-                                    Container(
-                                      padding: EdgeInsets.all(2),
-                                      margin: EdgeInsets.all(3),
-                                      width: 50,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(100),
-                                        border: Border.all(
-                                            color: Colors.black54,
-                                            width: 1),
-                                      ),
-                                      child: Text(
-                                        e,
-                                        style: TextStyle(fontSize: 10),
-                                      ),
-                                    ))
+                                    .map((e) => Container(
+                                          padding: EdgeInsets.all(2),
+                                          margin: EdgeInsets.all(3),
+                                          width: 50,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            border: Border.all(
+                                                color: Colors.black54,
+                                                width: 1),
+                                          ),
+                                          child: Text(
+                                            e,
+                                            style: TextStyle(fontSize: 10),
+                                          ),
+                                        ))
                                     .toList(),
                               ),
                               height: 29,
